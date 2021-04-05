@@ -1,0 +1,241 @@
+
+
+.icon-draw_point_data{
+	background:url(icons/draw_point_data.png) no-repeat ;
+}
+.icon-draw_line_data{
+	background:url(icons/draw_line_data.png) no-repeat ;
+}
+.icon-draw_face_data{
+	background:url(icons/draw_face_data.png) no-repeat ;
+}
+.icon-begin_data{
+	background:url(icons/begin_data.png) no-repeat ;
+}
+.icon-cancel_data{
+	background:url(icons/cancel_data.png) no-repeat ;
+}
+.icon-normal_data{
+	background:url(icons/normal_data.png) no-repeat ;
+}
+.icon-point_data{
+	background:url(icons/point_data.png) no-repeat ;
+}
+.icon-line_data{
+	background:url(icons/line_data.png) no-repeat ;
+}
+.icon-face_data{
+	background:url(icons/face_data.png) no-repeat ;
+}
+.icon-spring_data{
+	background:url(icons/spring_data.png) no-repeat ;
+}
+.icon-summer_data{
+	background:url(icons/summer_data.png) no-repeat ;
+}
+.icon-autumn_data{
+	background:url(icons/autumn_data.png) no-repeat ;
+}
+.icon-winter_data{
+	background:url(icons/winter_data.png) no-repeat ;
+}
+.icon-three_data{
+	background:url(icons/three_data.png) no-repeat ;
+}
+.icon-two_data{
+	background:url(icons/two_data.png) no-repeat;
+}
+.icon-one_data{
+	background:url(icons/one_data.png) no-repeat ;
+}
+.icon-zhengzhou_data{
+	background:url(icons/zhengzhou_data.png) no-repeat ;
+}
+.icon-shida_data{
+	background:url(icons/shida_data.png) no-repeat ;
+}
+.icon-look_data{
+	background:url(icons/look_data.png) no-repeat ;
+}
+.icon-quyu_data{
+	background:url(icons/quyu_data.png) no-repeat ;
+}
+.icon-aster_data{
+	background:url(icons/aster_data.png) no-repeat ;
+}
+.icon-gtopo_data{
+	background:url(icons/gtopo_data.png) no-repeat ;
+}
+.icon-srtm_data{
+	background:url(icons/srtm_data.png) no-repeat;
+}
+.icon-people_gdp{
+	background:url(icons/people_gdp.png) no-repeat ;
+}
+.icon-year_gdp{
+	background:url(icons/year_gdp.png) no-repeat ;
+}
+.icon-city_people{
+	background:url(icons/city_people.png) no-repeat ;
+}
+.icon-province_people{
+	background:url(icons/province_people.png) no-repeat ;
+}
+.icon-countrys_people{
+	background:url(icons/countrys_people.png) no-repeat ;
+}
+.icon-countrys_area{
+	background:url(icons/countrys_area.png) no-repeat ;
+}
+.icon-renwendata{
+	background:url(icons/renwen.png) no-repeat ;
+}
+.icon-dixingdata{
+	background:url(icons/dixing.png) no-repeat ;
+}
+.icon-domdata{
+	background:url(icons/domdata.png) no-repeat ;
+}
+.icon-hangpai{
+	background:url(icons/hangpai.png) no-repeat;
+}
+
+
+.icon-jianmo{
+	background:url(icons/jianmo.png) no-repeat ;
+}
+.icon-qingxie{
+	background:url(icons/qingxie.png) no-repeat ;
+}
+.icon-gisdata{
+	background:url(icons/gisdata.png) no-repeat;
+}
+
+.icon-qixiang{
+	background:url(icons/qihou.png) no-repeat ;
+}
+.icon-qihou{
+	background:url(icons/Weather.png) no-repeat;
+}
+.icon-toollength{
+	background:url(icons/ruler.png) no-repeat;
+}
+.icon-tooldraw{
+	background:url(icons/tooldraw.png) no-repeat;
+}
+.icon-toolarea{
+	background:url(icons/toolarea.png) no-repeat ;
+}
+.icon-tool{
+	background:url(icons/tool.png) no-repeat ;
+}
+.icon-fengxiang{
+	background:url(icons/WindFlag.png) no-repeat;
+} 
+.icon-qiya{
+	background:url(icons/press.png) no-repeat;
+}
+.icon-qiwen{
+	background:url(icons/tempreture.png) no-repeat;
+}
+.icon-leida{
+	background:url(icons/icon-leida.png) no-repeat;
+}
+.icon-radar_data{
+	background:url(icons/icon-radar_data.png) no-repeat;
+}
+.icon-radar_cancel_data{
+	background:url(icons/icon-radar_cancel_data.png) no-repeat;
+}
+.icon-supervise{
+	background:url(icons/icon-supervise.png) no-repeat;
+}
+.icon-supervise_data{
+	background:url(icons/icon-supervise_data.png) no-repeat;
+}
+.icon-supervise_cancel_data{
+	background:url(icons/icon-supervise_cancel_data.png) no-repeat;
+}
+.icon-slope{
+	background:url(icons/icon-slope.png) no-repeat;
+}
+.icon-slope_data{
+	background:url(icons/icon-slope_data.png) no-repeat;
+}
+.icon-slope_cancel_data{
+	background:url(icons/icon-slope_cancel_data.png) no-repeat;
+}
+.icon-search{
+	background:url(icons/icon-search.png) no-repeat;
+}
+.icon-search_data{
+	background:url(icons/icon-search_data.png) no-repeat;
+}
+.icon-search_cancel_data{
+	background:url(icons/icon-search_cancel_data.png) no-repeat ;
+}
+.icon-light{
+	background:url(icons/icon-light.png) no-repeat;
+}
+.icon-light_data{
+	background:url(icons/icon-light_data.png) no-repeat ;
+}
+.icon-light_cancel_data{
+	background:url(icons/icon-light_cancel_data.png) no-repeat;
+}
+
+
+
+
+
+.icon-redo{
+	background:url('icons/redo.png') no-repeat center center;
+}
+.icon-back{
+	background:url('icons/back.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('icons/sum.png') no-repeat center center;
+}
+.icon-tip{
+	background:url('icons/tip.png') no-repeat center center;
+}
+.icon-filter{
+	background:url('icons/filter.png') no-repeat center center;
+}
+.icon-man{
+	background:url('icons/man.png') no-repeat center center;
+}
+.icon-lock{
+	background:url('icons/lock.png') no-repeat center center;
+}
+.icon-more{
+	background:url('icons/more.png') no-repeat center center;
+}
+
+
+.icon-mini-add{
+	background:url('icons/mini_add.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('icons/mini_edit.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('icons/mini_refresh.png') no-repeat center center;
+}
+
+.icon-large-picture{
+	background:url('icons/large_picture.png') no-repeat center center;
+}
+.icon-large-clipart{
+	background:url('icons/large_clipart.png') no-repeat center center;
+}
+.icon-large-shapes{
+	background:url('icons/large_shapes.png') no-repeat center center;
+}
+.icon-large-smartart{
+	background:url('icons/large_smartart.png') no-repeat center center;
+}
+.icon-large-chart{
+	background:url('icons/large_chart.png') no-repeat center center;
+}

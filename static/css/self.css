@@ -1,0 +1,14 @@
+#logo{
+    color: white;
+    top:-30px;
+    text-align: center;
+}
+.news-list-div{
+    height: 60px !important;
+}
+.news-list-a{
+    line-height: 60px !important;
+}
+.paper-wrap{
+    height: calc(90vh);
+}

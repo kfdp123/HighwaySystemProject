@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>可编辑点线面</title>
+	<link rel="stylesheet" href="/static/drawearthlib/lib/Cesium1.61/Widgets/widgets.css" />
+	<style>
+		html,
+		body,
+		#map {
+			width: 100%;
+			height: 100%;
+		}
+
+		#toolBar {
+			position: absolute;
+			left: 20px;
+			top: 20px;
+			z-index: 2;
+			background: white;
+			padding: 5px 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="map">
+	</div>
+	<div id="toolBar">
+		<button id="drawBillboard">绘制点</button>
+		<button id="drawLine">绘制线</button>
+		<button id="drawGon">绘制面</button>
+		<button id="clearOne">单个清除</button>
+		<button id="clear">全部清除</button>
+	</div>
+</body>
+
+<script src="/static/drawearthlib/lib/Cesium1.61/Cesium.js"></script>
+<script src="/static/drawearthlib/lib/jquery/jquery-2.1.4.min.js"></script>
+<script src="/static/drawearthlib/es6Draw/CreateBillboard.js"></script>
+<script src="/static/drawearthlib/es6Draw/CreatePolyline.js"></script>
+<script src="/static/drawearthlib/es6Draw/CreatePolygon.js"></script>
+<script src="/static/drawearthlib/es6Draw/Draw.js"></script>
+<script>
+	//各种在线的mapserver服务 https://services.arcgisonline.com/arcgis/rest/services
+	var viewer = new Cesium.Viewer('map', {
+		imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
+			url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
+		}),
+		terrainProvider: new Cesium.CesiumTerrainProvider({ //加载火星在线地形
+			url: "http://data.marsgis.cn/terrain"
+		})
+	});
+	var draw = new DrawPolt({
+		viewer:viewer
+	})
+	$("#drawBillboard").click(function () {
+		draw.create(1);
+	});
+	
+	$("#drawLine").click(function () {
+		draw.create(2);
+	});
+	
+	$("#drawGon").click(function () {
+		draw.create(3);
+	});
+	$("#clear").click(function () {
+		draw.clearAll();
+	});
+
+	$("#clearOne").click(function () {
+		draw.clearOne();
+	});
+</script>
+
+</html>

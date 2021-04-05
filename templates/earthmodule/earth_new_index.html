@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>公路建设项目环水保智慧管理平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link rel="stylesheet" href="../static/assets/css/style.css">
+    <link rel="stylesheet" href="../static/assets/css/loader-style.css">
+    <link rel="stylesheet" href="../static/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/js/progress-bar/number-pb.css">
+    <!-- timeline css 
+    <link rel="stylesheet" href="assets/css/extra-pages.css">-->
+    <style type="text/css">
+    canvas#canvas4 {
+        position: relative;
+        top: 20px;
+    }
+    #paper-middle{
+        height:600px;
+    }
+    .cesium-widget-credits{ 
+        display:none!important; 
+        visibility:hide!important; 
+    } 
+    </style>
+    <script type="text/javascript" src="../static/assets/js/jquery.js"></script>
+    <script src="../static/assets/js/progress-bar/src/jquery.velocity.min.js"></script>
+    <script src="../static/assets/js/progress-bar/number-pb.js"></script>
+    <script src="../static/assets/js/progress-bar/progress-app.js"></script>
+
+    <!-- MAIN EFFECT -->
+    <script type="text/javascript" src="../static/assets/js/preloader.js"></script>
+    <script type="text/javascript" src="../static/assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../static/assets/js/app.js"></script>
+    <script type="text/javascript" src="../static/assets/js/load.js"></script>
+    <script type="text/javascript" src="../static/assets/js/main.js"></script>
+
+    <script type="text/javascript" src="../static/assets/js/chart/jquery.flot.js"></script>
+    <script type="text/javascript" src="../static/assets/js/chart/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="../static/assets/js/chart/realTime.js"></script>
+    <script type="text/javascript" src="../static/assets/js/speed/canvasgauge-coustom.js"></script>
+    <script type="text/javascript" src="../static/assets/js/countdown/jquery.countdown.js"></script>
+
+    <!--earth draw lib-->
+    <script src="/static/earthcombine/lib/Cesium1.61/Cesium.js"></script>
+    <script src="/static/earthcombine/lib/jquery/jquery-2.1.4.min.js"></script>
+    <script src="/static/earthcombine/es6Draw/CreateBillboard.js"></script>
+    <script src="/static/earthcombine/es6Draw/CreatePolyline.js"></script>
+    <script src="/static/earthcombine/es6Draw/CreatePolygon.js"></script>
+    <script src="/static/earthcombine/es6Draw/Draw.js"></script>
+
+
+    <!--指北针-->
+    <script type="text/javascript" src="/static/earthlib/scripts/navigator/viewerCesiumNavigationMixin.min.js"></script>
+    <script type="text/javascript" src="/static/earthlib/scripts/navigator/SpirographPositionProperty.js"></script>
+    <link href="/static/earthlib/scripts/navigator/navigatior.css"rel="stylesheet" type="text/css"  />
+
+    <link rel="stylesheet" href="/static/earthcombine/lib/Cesium1.61/Widgets/widgets.css" />
+
+    <style>
+        #cesiumContainer {
+            width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+        }
+        
+    </style>
+    <link rel="stylesheet" href="../static/css/self.css">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../static/assets/ico/minus.png">
+</head>
+
+<body> 
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <!-- TOP NAVBAR -->
+    <nav role="navigation" class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="entypo-menu"></span>
+                </button>
+                <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
+                    <span class="entypo-list-add"></span>
+                </button>
+                <div id="logo-mobile" class="visible-xs">
+                   <h1>WEB管理<span>v1.2</span></h1>
+                </div>
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">23</div></a>
+                        <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/1.jpg">Jhon Doe <b>Just Now</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/women/1.jpg">Jeniffer <b>3 Min Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/2.jpg">Dave <b>2 Hours Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/3.jpg"><i>Keanu</i>  <b>1 Day Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/4.jpg"><i>Masashi</i>  <b>2 Mounth Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>See All Messege</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green">5</div></a>
+                        <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>From Station</i>  <b>01B</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Departing at</i>  <b>9:00 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Delay for</i>  <b>09 Min</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#86C440" class="noft-icon maki-airport"></span><i>Take of</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Take of</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>See All Notification</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>
+                    </li>
+
+                </ul>
+                <div id="nt-title-container" class="navbar-left running-text visible-lg">
+                    <ul class="date-top">
+                        <li class="entypo-calendar" style="margin-right:5px"></li>
+                        <li id="Date"></li>
+
+
+                    </ul>
+
+                    <ul id="digital-clock" class="digital">
+                        <li class="entypo-clock" style="margin-right:5px"></li>
+                        <li class="hour"></li>
+                        <li>:</li>
+                        <li class="min"></li>
+                        <li>:</li>
+                        <li class="sec"></li>
+                        <li class="meridiem"></li>
+                    </ul>
+                </div>
+
+                <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" class="admin-pic img-circle" src="../static/assets/img/添加管理员.png">你好，管理员 <b class="caret"></b>
+                        </a>
+                        <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-user"></span>&#160;&#160;我的账户</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="../login.html">
+                                    <span class="entypo-basket"></span>&#160;&#160; 退出登录</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="hidden-xs">
+                        <a class="toggle-left" href="#">
+                            <span style="font-size:20px;" class="entypo-list-add"></span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- /END OF TOP NAVBAR -->
+
+    <!-- SIDE MENU -->
+    <div id="skin-select">
+        <div id="logo">
+         <h3>公路建设项目环水保智慧管理平台</h3>
+        </div>
+
+        <a id="toggle">
+            <span class="entypo-menu"></span>
+        </a>
+        <div class="dark">
+            <form action="#">
+                <span>
+                    <input type="text" name="search" value="" class="search rounded id_search" placeholder="Search Menu..." autofocus="">
+                </span>
+            </form>
+        </div>
+
+        <div class="search-hover">
+            <form id="demo-2">
+                <input type="search" placeholder="Search Menu..." class="id_search">
+            </form>
+        </div>
+        <div class="skin-part">
+            <div id="tree-wrap">
+                <div class="side-bar">
+                    <ul class="topnav menu-left-nest">
+                        <li>
+                            <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
+
+                                <span class="design-kit">功能页</span>
+                                <i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="/index/" title="首页">
+                                <i class="icon-window"></i>
+                                <span>首页</span>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="文件查看">
+                                <i class="icon-mail"></i>
+                                <span>相关文件</span>
+                                <div class="noft-blue" style="display: inline-block; float: none;">89</div>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="../files-manage.html" title="Form Elements"><i class="icon-document-edit"></i><span>保护区资料下载</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Andvance Form"><i class="icon-map"></i><span>环境监测报告下载</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Text Editor"><i class="icon-code"></i><span>公告公示下载</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="../project-photos.html" title="研究区图像资料">
+                                <i class="icon-preview"></i>
+                                <span>影像资料</span>
+                                <div class="noft-blue" style="display: inline-block; float: none;">New</div>
+                            </a>
+                        </li>
+                         <li>
+                            <a class="tooltip-tip ajax-load" href="../project-photos.html" title="视频监控">
+                                <i class="icon-preview"></i>
+                                <span>视频监控</span>
+                                <div class="noft-blue" style="display: inline-block; float: none;">New</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF SIDE MENU -->
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid">
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+            <!-- CONTENT -->
+            <!--TITLE -->
+            <!---->
+            <div class="row">
+                <div id="paper-top">
+                    <div class="col-lg-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-window"></i> 
+                            <span>首页
+                            </span>
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+            <!-- BREADCRUMB -->
+            <!--
+            <ul id="breadcrumb">
+                <li>
+                    <span class="entypo-home"></span>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li><a href="#" title="Sample page 1">首页</a>
+                </li>
+
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+
+                        <input style="border-radius:15px" type="text" placeholder="Search..." class="form-control">
+                    </div>
+                </li>
+                
+            </ul>
+            -->
+            <!-- END OF BREADCRUMB -->
+            <div id="paper-middle">
+                <!--<iframe id="iframe_id" src="/earth/main_index"></iframe>-->
+                <!--地球容器-->
+                <div id="earth_map"></div>
+                <!--顶部下拉菜单组件-->
+                <div class="row" style="position: relative;bottom: 100%;margin-top:-1px;opacity: 0.7">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <!--绘制功能-->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                绘制功能 <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" id="drawBillboard">绘制点</a></li>
+                                <li><a href="#" id="drawLine">绘制线</a></li>
+                                <li><a href="#" id="drawGon">绘制面</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#" id="clearOne">单个清除</a></li>
+                                <li><a href="#" id="clear">全部清除</a></li>
+                            </ul>
+                          </div>
+                          <!--空间分析-->
+                          <div class="btn-group" role="group">
+                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                空间分析
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">量测</a></li>
+                                <li><a href="#">缓冲区分析</a></li>
+                                <li><a href="#">矢量文件加载</a></li>
+                                <li role="separator" class="divider"></li>
+                              </ul>
+                          </div>
+                          <!-- -->
+                          <div class="btn-group" role="group">
+                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                right
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                              </ul>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--  DEVICE MANAGER -->
+            <div class="content-wrap">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="profit" id="profitClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span>
+                                        <i class="maki-ferry"></i>&#160;&#160;保护区面积</span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#profitClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="value">
+                                <span class="pull-left"><i class="entypo-clock clock-position"></i>
+                                </span>
+                                <div>
+                                    <span>968</span><i>km2</i>
+                                </div>
+
+                            </div>
+
+                            <div class="progress-tinny">
+                                <div style="width: 50%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <i class="fa fa-caret-up fa-lg"></i>&#160;&#160; 50% &#160;From Last Hour</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="revenue" id="revenueClose">
+                            <div class="headline ">
+
+                                <h3>
+                                    <span>
+                                        <i class="maki-aboveground-rail"></i>&#160;&#160;PM2.5</span>
+                                </h3>
+
+                                <div class="titleClose">
+                                    <a href="#revenueClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <span class="pull-left"><i class="entypo-gauge gauge-position"></i>
+                                </span>
+                                <canvas id="canvas4" width="70" height="70"></canvas>
+                                <i class="pull-right"></i>
+
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 25%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <i class="fa fa-caret-down fa-lg"></i>&#160;&#160;</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="order" id="orderClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span>
+                                        <i class="maki-airport"></i>&#160;&#160;植被覆盖率</span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#orderClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <span><i class="fa fa-plane fa-2x"></i>
+                                </span><b id="speed">10</b><b>%</b>
+
+                            </div>
+
+                            <div class="progress-tinny">
+                                <div style="width: 10%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <i class="fa fa-caret-down fa-lg"></i>&#160;&#160;Rate : 与去年相比</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class=" member" id="memberClose">
+                            <div class="headline ">
+                                <h3>
+                                    <span>
+                                        <i class="fa fa-truck"></i>
+                                        &#160;&#160;物种种类
+                                    </span>
+                                </h3>
+                                <div class="titleClose">
+                                    <a href="#memberClose" class="gone">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="value">
+                                <span><i class="maki-warehouse"></i>
+                                </span>650<b>个</b>
+
+                            </div>
+                            <div class="progress-tinny">
+                                <div style="width: 50%" class="bar"></div>
+                            </div>
+                            <div class="profit-line">
+                                <span class="entypo-down-circled"></span>&#160;10% 与去年相比</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  timeline start -->
+            <div class="content-wrap">
+                <div class="time-wrap">
+                    <div class="row">                       
+                        <!--小文件-->
+                        <div class="col-md-4" style="background-color: white;border-right: 1px dotted #e0d8d8;">
+                            <div class="blog-side-nest">
+                                <h4 class="text-left" style="font-size: 20px;">时政要闻</h4>
+                                <hr style="margin:0">
+        
+                                <div class="media">
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="news-list-a" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">民法典来了，生态环境保护条款知多少</a>
+                                        <a class="news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-16</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link news-list-a" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">摸清生态国情 守护绿水青山</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-14</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link news-list-a" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">生态环境部通报1-5月全国环境空气质量状况</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-12</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">《第二次全国污染源普查公报》发布</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-11</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">生态环境部一季度水环境达标滞后城市名单公布</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-10</a>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <!--小文件-->
+                        <div class="col-md-4" style="background-color: white;border-right: 1px dotted #e0d8d8;">
+                            <div class="blog-side-nest">
+                                <h4 class="text-left" style="font-size: 20px;">工作文档</h4>
+                                <hr style="margin:0">
+        
+                                <div class="media">
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="news-list-a" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">关于开展2020年生态环境资源管理的通知</a>
+                                        <a class="news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-16</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link news-list-a" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">2020年生态环境森林资源管理"一张图"</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-16</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link news-list-a" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">2020年生态环境保护区资源管理"一张图"</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-15</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">全国保护区自然资源管理"一张图"</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-15</a>
+                                    </div>
+                                </div>
+        
+                                <div class="media">
+                                    <!--<a class="pull-left" href="#">
+                                        <img class="media-object img-responsive-media" data-src="holder.js/64x64" alt="64x64" src="http://placehold.it/64x64">
+                                    </a>
+                                    -->
+                                    <div class="media-body news-list-div" style="height: 60px;">
+                                        <a class="link-comment recentpost-link" style="line-height: 60px;font-size: 20px;color:#4e4b4b" href="#">2020年青藏地区保护区生态环境变化</a>
+                                        <a class="link-comment recentpost-link news-list-a" style="float: right;line-height: 60px;font-size: 17px;color:#aba6a6" href="#">2020-06-05</a>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <!--小文件-->
+                        <div class="col-md-4" style="background-color: white;">
+                            <div id="RealTimeClose" class="nest">
+                                <h4 class="text-left" style="font-size: 20px;">应用工具</h4>
+                                <hr style="margin:0">
+                                <div class="media" style="height:117px">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-responsive-media" data-src="holder.js/64x64" alt="64x64" src="../static/assets/img/下载.png">
+                                    </a>
+                                    <div class="media-body">
+                                        <a class="link-comment recentpost-link" style="margin:-10px 0 10px;font-size: 20px;color:#4e4b4b" href="#">文件下载</a>
+                                        <h5 class="media-heading" style="color:#aba6a6">提供全国各地生态资源管理相关政策、规范以及通知文件预览和下载功能</h5>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="media" style="height:117px">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-responsive-media" data-src="holder.js/64x64" alt="64x64" src="../static/assets/img/浏览.png">
+                                    </a>
+                                    <div class="media-body">
+                                        <a class="link-comment recentpost-link" style="margin:-10px 0 10px;font-size: 20px;color:#4e4b4b" href="#">在线浏览</a>
+                                        <h5 class="media-heading" style="color:#aba6a6">提供青藏地区主要自然保护区的图片及视频在线预览功能</h5>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="media" style="height:116px">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-responsive-media" data-src="holder.js/64x64" alt="64x64" src="../static/assets/img/生态.png">
+                                    </a>
+                                    <div class="media-body">
+                                        <a class="link-comment recentpost-link" style="margin:-10px 0 10px;font-size: 20px;color:#4e4b4b" href="#">高原生态环境信息系统</a>
+                                        <h5 class="media-heading" style="color:#aba6a6">统利用测绘技术、计算机技术、GIS技术，把基础信息以数字的形式获取、存储、管理、分析、查询、输出、更新，为建设与发展提供准确的高原水土保持基础资料。</h5>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        
+                        <!--折线图-->
+                        <div class="col-lg-4" style="display:none">
+                            <div class="chart-wrap">
+                                <div class="chart-dash">
+                                    
+                                    <div id="placeholder" style="width:100%;height:200px;"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="speed">
+                                            <h2>Speed Avarage</h2>
+                                            <h1>74
+                                                <span>Km / hours</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="traffic">
+                                            <h2>Traffic per day</h2>
+                                            <h1>2.5874</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="traffic-rates">
+                                            <h4>Traffic Rates</h4>
+                                            <h1>76 %
+                                                <span>-1,2 %</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="traffic-rates">
+                                            <h4>Traffic Rates</h4>
+                                            <h1>25 %
+                                                <span>-1,8 %</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="traffic-rates">
+                                            <h4>Traffic Rates</h4>
+                                            <h1>83 %
+                                                <span>-1,9 %</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=".clearfix"></div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <!--  timeline end -->           
+        </div>
+    </div>
+    <!--  END OF PAPER WRAP -->
+
+    <!-- RIGHT SLIDER CONTENT -->
+    <div class="sb-slidebar sb-right">
+        <div class="right-wrapper">
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- END OF RIGHT SLIDER CONTENT-->
+
+
+
+    <script src="../static/assets/js/jhere-custom.js"></script>
+
+    <script>
+    //pm2.5动态变换
+    var gauge4 = new Gauge("canvas4", {
+        'mode': 'needle',
+        'range': {
+            'min': 0,
+            'max': 90
+        }
+    });
+    gauge4.draw(Math.floor(Math.random() * 90));
+    var run = setInterval(function() {
+        gauge4.draw(Math.floor(Math.random() * 90));
+    }, 3500);
+    </script>
+
+    <script type="text/javascript">
+    var output, started, duration, desired;
+
+    // Constants
+    duration = 5000;
+    desired = '50';
+
+    // Initial setup
+    output = $('#speed');
+    started = new Date().getTime();
+
+    // Animate!
+    animationTimer = setInterval(function() {
+        // If the value is what we want, stop animating
+        // or if the duration has been exceeded, stop animating
+        if (output.text().trim() === desired || new Date().getTime() - started > duration) {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('10')
+            
+
+        } else {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('10');
+        }
+    }, 5000);
+    </script>
+    <!--
+        设置 iframe 样式
+    -->
+    <script>
+        let iframeHeight = $('#paper-middle').height();
+        let iframeWidth  = $('#paper-middle').width();
+        $("#iframe_id").height(iframeHeight);
+        $("#iframe_id").width(iframeWidth-250);
+
+
+    </script>
+
+    <script>
+        //自适应球高度
+        $(document).ready(function() {
+            initLayout();
+            $(window).resize(function(){
+                initLayout();
+            });
+            //预加载当天的数据
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = (date.getMonth()+1).toString();
+            var day = date.getDate().toString();
+            month = month.length<2 ? '0'+month:month;
+            day = day.length<2 ? '0'+day:day;
+            var dateStr = year+"-"+month+"-"+day;
+
+        });
+        function initLayout() {
+            //alert("resize");
+            var clientHeight = document.documentElement.clientHeight;
+            var divHeight = clientHeight*0.65+"px";
+            $('#paper-middle').css('height',divHeight);
+
+            let iframeHeight = $('#paper-middle').height();
+            let iframeWidth  = $('#paper-middle').width();
+            $("#earth_map").height(iframeHeight);
+            $("#earth_map").width(iframeWidth-250);
+        }
+    </script>
+
+    <!--加载地球-->
+    <script>
+        //各种在线的mapserver服务 https://services.arcgisonline.com/arcgis/rest/services
+        var viewer = new Cesium.Viewer('earth_map', {
+            imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
+                url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
+            }),
+            terrainProvider: new Cesium.CesiumTerrainProvider({ //加载火星在线地形
+                url: "http://data.marsgis.cn/terrain"
+            }),
+            fullscreenButton:false,
+            baseLayerPicker:false
+        });
+
+        //指北针
+        viewer.extend(Cesium.viewerCesiumNavigationMixin, {});
+        //隐藏版本信息
+        viewer._cesiumWidget._creditContainer.style.display="none";
+
+        //绘制点线面功能
+        var draw = new DrawPolt({
+            viewer:viewer
+        });
+        $("#drawBillboard").click(function () {
+            draw.create(1);
+        });
+
+        $("#drawLine").click(function () {
+            draw.create(2);
+        });
+
+        $("#drawGon").click(function () {
+            draw.create(3);
+        });
+        $("#clear").click(function () {
+            draw.clearAll();
+        });
+
+        $("#clearOne").click(function () {
+            draw.clearOne();
+        });
+
+        //加载kml
+        var kmlOptions = {
+             camera : viewer.scene.camera,
+             canvas : viewer.scene.canvas,
+             clampToGround : true
+        };
+
+        viewer.dataSources.add(Cesium.KmlDataSource.load('../../static/data/qinghairegion.kmz', kmlOptions)).then(function(dataSource){
+            //viewer.clock.shouldAnimate = false;
+            /*
+            var rider = dataSource.entities.getById('tour');
+            viewer.flyTo(rider).then(function(){
+                viewer.trackedEntity = rider;
+                viewer.selectedEntity = viewer.trackedEntity;
+                viewer.clock.multiplier = 30;
+                viewer.clock.shouldAnimate = true;
+            });
+            */
+        });
+    </script>
+
+<div style="text-align:center;">
+    <p>© Copyright 2020.</p>
+</div>
+</body>
+
+</html>

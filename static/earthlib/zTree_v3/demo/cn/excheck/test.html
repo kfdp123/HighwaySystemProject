@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE> ZTREE DEMO - checkbox</TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+	<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ztree.excheck.js"></script>
+
+	<SCRIPT type="text/javascript">
+
+		var setting = {
+			check: {
+				enable: true,
+				chkDisabledInherit: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				//beforeCheck: beforeCheck,
+				onCheck: onCheck,
+				onRightClick: zTreeOnRightClick
+			}
+		};
+
+		var zNodes =[
+			{ id:1, pId:0, name:"某军营",open:true},
+			{ id:11, pId:1, name:"一连",open:true},
+			   { id:111, pId:11, name:"士兵一"},
+			   { id:112, pId:11, name:"士兵二"},
+			   { id:113, pId:11, name:"士兵三"},
+			{ id:12, pId:1, name:"二连",open:true},
+			   { id:121, pId:12, name:"士兵一"},
+			   { id:122, pId:12, name:"士兵二"},
+			   { id:123, pId:12, name:"士兵三"},
+			{ id:13, pId:1, name:"三连",open:true},
+			   { id:131, pId:13, name:"士兵一"},
+			   { id:132, pId:13, name:"士兵二"},
+			   { id:133, pId:13, name:"士兵三"}
+		];
+		
+		
+		function setCheck() {
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+			type={"Y": "s", "N": "s"};
+			zTree.setting.check.chkboxType = type;
+		}
+		function disabledCheck(arcg1,arcg2){
+		    var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+			 node1 =  zTree.getNodeByParam("id", arcg1, null);
+			 node2 =  zTree.getNodeByParam("id", arcg2, null);
+			 zTree.setChkDisabled(node1,true,false,true);
+			 zTree.setChkDisabled(node2,true,false,true);
+		}
+		var nodes=[];
+		function onCheck(e, treeId, treeNode){
+		 var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+		    nodes = zTree.getCheckedNodes(true);
+		   for(var i=0;i<nodes.length;i++){
+               alert(nodes[i].id); //获取每个节点的id
+             }
+		}
+		function zTreeOnRightClick(event, treeId, treeNode) {
+           alert(treeNode.pId);
+       };
+		
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			setCheck();
+		});
+
+		  window.onload=function(){
+        var a = document.getElementById("form_id");
+        var Height=document.documentElement.clientHeight;
+        var Width=document.documentElement.clientWidth;
+        var gao1 = a.offsetHeight;
+        var gao2 = a.offsetWidth;
+        var Sgao1= (Height - gao1)/2+"px";
+        var Sgao2= (Width - gao2)/2+"px";
+        a.style.top=Sgao1;
+        a.style.left=Sgao2;
+    }
+	var form_id,account,content_wrap;
+	
+	var orderValue= document.getElementsByName("orderValue");
+	
+	function loginSuccess(){
+	content_wrap=document.getElementById("content_wrap");
+	 form_id=document.getElementById('form_id');
+	 account=document.getElementById('Account');
+	var accountValue=account.value;
+	  for(var i=0;i<orderValue.length;i++){ 
+		if(orderValue[i].checked){ 
+		  userid = orderValue[i].value;
+		  if((userid=='first')&&(accountValue==1)){
+		      form_id.style.display='none';
+			  content_wrap.style.display='';
+		  }else if(userid=='second'){
+		      if(accountValue==11){
+			     form_id.style.display='none';
+				 content_wrap.style.display='';
+				 disabledCheck(12,13);
+			  }else if(accountValue==12){
+			    form_id.style.display='none';
+				content_wrap.style.display='';
+				disabledCheck(11,13);
+			  }else if(accountValue==13){
+			    form_id.style.display='none';
+				content_wrap.style.display='';
+				disabledCheck(11,12);
+			  }else{
+			    alert('不存在此账号');
+			  }
+		  }else{
+		       alert('不存在此账号');
+		  }
+		} 
+		} 
+	}
+	
+	function nowLocation(){
+	
+	}
+	function pastLocation(){
+	    
+	}
+	function cancelLocation(){
+	    content_wrap.style.display='none';
+	}
+	</SCRIPT>
+</HEAD>
+
+<BODY>
+<form id='form_id'  style='position:absolute;z-index:200;width:300px;height:200px;border:1px solid white;background:url(logoarmy.jpg);'>
+  <div style='position:absolute;top:0px;width:300px;height:50px;line-height:50px;text-align:center;color:green;font-size:20px;'>
+    军队定位查询系统
+   </div>
+   <br/>
+   <div style='position:absolute;top:50px;width:300px;height:50px;line-height:50px;text-align:center;'>
+   <input type='radio' name='orderValue' value='first' />一级管理者&nbsp;&nbsp;<input type='radio' name='orderValue' value='second' />二级管理者
+   </div>
+   <div style='position:absolute;top:100px;width:300px;height:50px;line-height:50px;text-align:center;color:white;font-size:15px;'>
+      账号：<input id='Account' type='text' name='zhid' value=''/>
+   </div>
+   <div style='position:absolute;top:150px;width:300px;height:50px;line-height:50px;text-align:center;color:white;'>
+      <input type='button' name='zhid' value='登录' onclick='loginSuccess();'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='reset' name='zhid' value='重置' />
+   </div>
+</form>
+<div id='content_wrap' class="content_wrap" style='position:absolute;display:none;top:0px;right:0px;z-index:200;'>
+	<div class="zTreeDemoBackground left">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+	<div style='width:232px;height:50px;position:absolute;bottom:0px;text-align:center;line-height:50px;'>
+	    <input type='button' value='实时定位' onclick='nowLocation()'/>&nbsp;&nbsp;&nbsp;<input type='button' value='轨迹查询' onclick='pastLocation()'/>&nbsp;&nbsp;<input type='button' value='取消' onclick='cancelLocation()'/>
+	</div>
+</div>
+</BODY>
+</HTML>

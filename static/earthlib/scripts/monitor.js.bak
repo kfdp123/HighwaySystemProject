@@ -1,0 +1,73 @@
+// JavaScript source code
+// 人员监控
+/*
+* goose 2017年4月26日 for forest information inquery!~
+*/
+
+function lbsmonitor(vbegin)
+{
+	
+    //menu
+    if(vbegin == true) $('#dlgmenu_moni').show();
+	else $('#dlgmenu_moni').hide();
+
+    if(vbegin)
+    {
+        init_map2d();
+    }
+    else {
+        close_wins();
+    }
+}
+
+//vpts:[x,y,x,y,x,y...]
+function create_polyline(vpts,vname,vdetail)
+{
+		if(!isvalid(vpts)) return null;
+		
+    var vpl=new Cesium.PolylineGraphics({
+        positions: Cesium.Cartesian3.fromDegreesArray(vpts),
+        width: 5,
+        //material: Cesium.Color.RED
+        material: new Cesium.PolylineOutlineMaterialProperty({
+	        color: Cesium.Color.ORANGE,
+	        outlineWidth: 3,
+	        outlineColor: Cesium.Color.BLACK
+		    })
+    });
+
+    var entity = new Cesium.Entity({
+    		name:vname,
+        polyline: vpl,
+        description:vdetail
+    });
+    //viewer.zoomTo(viewer.entities);
+    return enetity;
+}
+
+//vpt:[x,y]
+function create_marker(vpt,vid,vname,vdetail,vimgurl,vimgw,vimgh) {
+	
+    var citizensBankPark = new Cesium.Entity({
+    		id:vid,
+    		name:vname,
+        position: Cesium.Cartesian3.fromDegrees(-75.166493, 39.9060534),
+        billboard: {
+            image: vimgurl,
+            width: vimgw,
+            height: vimgh
+        },
+        label: {
+            text: vdetail,
+            font: '14pt monospace',
+            style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+            outlineWidth: 2,
+            verticalOrigin: Cesium.VerticalOrigin.TOP,
+            pixelOffset: new Cesium.Cartesian2(0, 32)
+        }
+    });
+
+		return citizensBankPark;
+}
+
+

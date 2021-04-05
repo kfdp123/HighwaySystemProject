@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Hello World!</title>
+  <script src="../Build/CesiumUnminified/Cesium.js"></script>
+  <script src="jquery-3.2.1.js"></script>
+  <script src="color_table.js"></script>
+  <style>
+      @import url(../Build/Cesium/Widgets/widgets.css);
+      html, body, #cesiumContainer {
+        width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      }
+  </style>
+</head>
+<body>
+<div id="cesiumContainer"></div>
+<canvas id="canvas" style="z-index:5;position: absolute;pointer-events:none;top:0;left:0;"></canvas>
+<script>
+
+var viewer = new Cesium.Viewer('cesiumContainer',{
+    timeline:false,
+    animation:false,
+    fullscreenButton:false,
+    homeButton:true,
+    baseLayerPicker:false,
+    sceneModePicker:false,
+    navigationHelpButton:false,
+    imageryProvider:  Cesium.createOpenStreetMapImageryProvider({
+    url : '../../google'
+  })
+});
+/**
+ * 初始化变量
+ * */
+//得到当前三维场景
+var scene = viewer.scene;
+//得到当前三维场景的椭球体
+var ellipsoid = scene.globe.ellipsoid;
+var canvas = scene.canvas;
+var can =document.getElementById("canvas");
+can.width = canvas.width;
+can.height = canvas.height;
+var ctx = can.getContext("2d");
+// 定义当前场景的画布元素的事件处理
+var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+// 定义canvas图像的宽高
+var imgData=ctx.createImageData(canvas.width,canvas.height);
+/**
+ * 定义二维数组dataArr
+ * 用于存放原始数据
+ * */
+var dataArr = [];
+for(var i =0;i<360;i++){
+    dataArr [i]= [];
+}
+/**
+ * 获取原始数据json文件并对dataArr赋值
+ * */
+$.getJSON("json/SPFH_1.json",function(data){
+    var k=0;
+    for(var j =0;j<180;j++){
+         for(var i=0;i<360;i++){
+            dataArr[i][j] = data[k].v;
+            k=k+1;
+        }
+    }
+});
+
+/**
+ * 监听鼠标左键清空canvas
+ * */
+handler.setInputAction(function(movement) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+
+/*handler.setInputAction(function(wheelment) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}, Cesium.ScreenSpaceEventType.WHEEL);*/
+/**
+ * 监听鼠标移动事件计算插值并渲染
+ * */
+handler.setInputAction(function (movement) {
+   /* 当相机高度在4702700以下，871816以上时才插值*/
+    console.time("起始");
+   var count = 0;var result = [];
+   var camera_height = Math.ceil(viewer.camera.positionCartographic.height);
+
+   //一定高度下才开始插值
+   if(camera_height<4702700){
+       for(let j=0;j<canvas.height;j++){
+           for(let i=0;i<canvas.width;i++){
+               var car3_lt = viewer.camera.pickEllipsoid(new Cesium.Cartesian2(i,j), ellipsoid);
+               if(car3_lt){
+                   var carto_lt = ellipsoid.cartesianToCartographic(car3_lt);
+                   result.push(Cesium.Math.toDegrees(carto_lt.longitude));
+                   result.push(Cesium.Math.toDegrees(carto_lt.latitude));
+               }
+           }
+       }
+       let canvasHeight = canvas.height-1;
+       let canvasWidth = Math.floor(canvas.width/5);
+       for(let j=1;j<canvasHeight;j++) {
+            for(let i=1;i<canvasWidth;i++){
+              var u=(result[count/2]+360)%1;
+              var v=(90-result[count/2+1])%1;
+              var Xs=(result[count/2]+360)%360;
+              var Ys=(90-result[count/2+1]);
+              if (Xs>359) {Xs=358.9}
+              if (Ys>179) {Ys=178.9}
+              try {
+                var value  = ((1 - u) * (1 - v) * dataArr[Math.floor(Xs)][Math.floor(Ys)] + (1 - u) * v * dataArr[Math.floor(Xs)][Math.ceil(Ys)] + u * (1 - v) * dataArr[Math.ceil(Xs)][Math.floor(Ys)] + u * v * dataArr[Math.ceil(Xs)][Math.ceil(Ys)]);
+              }catch(err){
+                alert(err)
+              }
+
+              var cal_table=SPFHColorTable(value);
+              imgData.data[count]= cal_table.R;
+              imgData.data[count+1]=cal_table.G;
+              imgData.data[count+2]=cal_table.B;
+              imgData.data[count+3]=150;
+              imgData.data[count+4]= cal_table.R;
+              imgData.data[count+5]=cal_table.G;
+              imgData.data[count+6]=cal_table.B;
+              imgData.data[count+7]=150;
+              imgData.data[count+8]= cal_table.R;
+              imgData.data[count+9]=cal_table.G;
+              imgData.data[count+10]=cal_table.B;
+              imgData.data[count+11]=150;
+              imgData.data[count+12]= cal_table.R;
+              imgData.data[count+13]=cal_table.G;
+              imgData.data[count+14]=cal_table.B;
+              imgData.data[count+15]=150;
+              imgData.data[count+16]= cal_table.R;
+              imgData.data[count+17]=cal_table.G;
+              imgData.data[count+18]=cal_table.B;
+              imgData.data[count+19]=150;
+              count+=20;
+           }
+       }
+       ctx.putImageData(imgData,0,0);
+   }
+    console.timeEnd("起始");
+},Cesium.ScreenSpaceEventType.LEFT_UP);
+
+</script>
+</body>
+</html>

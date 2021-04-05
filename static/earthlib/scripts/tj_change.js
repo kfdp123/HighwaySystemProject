@@ -1,0 +1,1156 @@
+/*
+*天津市1975-2015年建筑面积变化&天津市1980-2015年水域面积变化
+*
+*/
+function light_add(){
+$('#tjChangeWindow').window('open');
+$('#tjChangeWindow').window({left:300,top:50});
+} 
+
+function light_cancel(){
+$('#tjChangeWindow').window('close');
+ $(".inner_light").hide();
+ for(var i=0;i<tjtdImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjtdImgs[i]);
+				}
+				for(var i=0;i<tjsyImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjsyImgs[i]);
+				}
+} 
+
+var tjtdImgs=[],tjsyImgs=[];
+var tjtd_timer,tjsy_timer;
+var image_other1,image_other2,image_other3,image_other4,image_other5,image_other6,image_other7,image_other8,image_other9;
+var image_other10,image_other11,image_other12,image_other13,image_other14,image_other15,image_other16,image_other17;
+var tj_transform=document.getElementById("tj_transform");
+tj_transform.addEventListener("change",function(){
+   var index_flag=tj_transform.selectedIndex;
+   if(index_flag==1){                                                         //<!-- 天津市建筑用地类型变化 -->
+         
+		var tj_slider=document.getElementById("tj_slider");
+        var tj_text=document.getElementById("tj_text");
+        tj_slider.addEventListener("mouseup",function(){
+           var slider_v=tj_slider.value;
+           tj_text.value=slider_v; 
+             switch(slider_v){ 
+               case "1970":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+                 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);				 
+        		 break;
+        	  case "1975":
+        		 viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		  image_other1=image_show("../../localOtherData/tj_change/1975/",1.0);
+                 tjtdImgs.push(image_other1);				  
+        		  break;
+        	  case "1980":
+        	    viewer.scene.imageryLayers.remove(image_other1);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other2=image_show("../../localOtherData/tj_change/1980/",1.0);
+                 tjtdImgs.push(image_other2);				 
+        		 break;
+        	  case "1985":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        		 viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other3=image_show("../../localOtherData/tj_change/1985/",1.0);
+				 tjtdImgs.push(image_other3);
+        		 break;
+        	  case "1990": 
+        	    viewer.scene.imageryLayers.remove(image_other1);
+        		 viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other4=image_show("../../localOtherData/tj_change/1990/",1.0);
+				 tjtdImgs.push(image_other4);
+        		 break;
+        	 case "1995":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other5=image_show("../../localOtherData/tj_change/1995/",1.0);
+				 tjtdImgs.push(image_other5);
+        		 break;
+        	 case "2000":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other6=image_show("../../localOtherData/tj_change/2000/",1.0);
+				 tjtdImgs.push(image_other6);
+        		 break;
+        	 case "2005":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other7=image_show("../../localOtherData/tj_change/2005/",1.0);
+				 tjtdImgs.push(image_other7);
+        		 break;
+        	 case "2010":
+        	 	 viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other8=image_show("../../localOtherData/tj_change/2010/",1.0);
+				 tjtdImgs.push(image_other8);
+        		 break;
+        	 case "2015":
+        		 viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+                 image_other9=image_show("../../localOtherData/tj_change/2015/",1.0);
+				 tjtdImgs.push(image_other9);
+        		 break;
+        	}
+        });
+        
+        tj_text.addEventListener("change",function(){
+           var text_v=tj_text.value;
+           tj_slider.value=tj_text.value;
+           switch(text_v){ 
+               case "1970":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+                 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);				 
+        		 break;
+        	  case "1975":
+        		 viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		  image_other1=image_show("../../localOtherData/tj_change/1975/",1.0); 
+                  tjtdImgs.push(image_other1);				  
+        		  break;
+        	  case "1980":
+        	    viewer.scene.imageryLayers.remove(image_other1);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other2=image_show("../../localOtherData/tj_change/1980/",1.0);
+                 tjtdImgs.push(image_other2);				 
+        		 break;
+        	  case "1985":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        		 viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other3=image_show("../../localOtherData/tj_change/1985/",1.0);
+				 tjtdImgs.push(image_other3);
+        		 break;
+        	  case "1990": 
+        	    viewer.scene.imageryLayers.remove(image_other1);
+        		 viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other4=image_show("../../localOtherData/tj_change/1990/",1.0);
+				 tjtdImgs.push(image_other4);
+        		 break;
+        	 case "1995":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other5=image_show("../../localOtherData/tj_change/1995/",1.0);
+				 tjtdImgs.push(image_other5);
+        		 break;
+        	 case "2000":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other6=image_show("../../localOtherData/tj_change/2000/",1.0);
+				 tjtdImgs.push(image_other6);
+        		 break;
+        	 case "2005":
+        	     viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other7=image_show("../../localOtherData/tj_change/2005/",1.0);
+				 tjtdImgs.push(image_other7);
+        		 break;
+        	 case "2010":
+        	 	 viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other9);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+        		 image_other8=image_show("../../localOtherData/tj_change/2010/",1.0);
+				 tjtdImgs.push(image_other8);
+        		 break;
+        	 case "2015":
+        		 viewer.scene.imageryLayers.remove(image_other1);
+        	     viewer.scene.imageryLayers.remove(image_other2);
+        		 viewer.scene.imageryLayers.remove(image_other3);
+        		 viewer.scene.imageryLayers.remove(image_other4);
+        		 viewer.scene.imageryLayers.remove(image_other5);
+        		 viewer.scene.imageryLayers.remove(image_other6);
+        		 viewer.scene.imageryLayers.remove(image_other7);
+        		 viewer.scene.imageryLayers.remove(image_other8);
+				 clearInterval(tjsy_timer);
+		         viewer.scene.imageryLayers.remove(image_other10);
+		         viewer.scene.imageryLayers.remove(image_other11);
+		         viewer.scene.imageryLayers.remove(image_other12);
+		         viewer.scene.imageryLayers.remove(image_other13);
+		         viewer.scene.imageryLayers.remove(image_other14);
+		         viewer.scene.imageryLayers.remove(image_other15);
+		         viewer.scene.imageryLayers.remove(image_other16);
+		         viewer.scene.imageryLayers.remove(image_other17);
+                 image_other9=image_show("../../localOtherData/tj_change/2015/",1.0);
+				 tjtdImgs.push(image_other9);
+        		 break;
+        	}
+        });
+        
+        
+        
+        document.getElementById("tjtd_play").onclick=function(){
+        viewer.camera.flyTo({
+            destination : Cesium.Cartesian3.fromDegrees(117.3462305,39.3512083,280000),
+        	duration:1
+            });
+			for(var i=0;i<tjtdImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjtdImgs[i]);
+				}
+				for(var i=0;i<tjsyImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjsyImgs[i]);
+				}
+				clearInterval(tjsy_timer);
+				viewer.scene.imageryLayers.remove(image_other10);
+				viewer.scene.imageryLayers.remove(image_other11);
+				viewer.scene.imageryLayers.remove(image_other12);
+				viewer.scene.imageryLayers.remove(image_other13);
+				viewer.scene.imageryLayers.remove(image_other14);
+				viewer.scene.imageryLayers.remove(image_other15);
+				viewer.scene.imageryLayers.remove(image_other16);
+				viewer.scene.imageryLayers.remove(image_other17);
+        	    viewer.scene.imageryLayers.remove(image_other1);
+        		viewer.scene.imageryLayers.remove(image_other2);
+        		viewer.scene.imageryLayers.remove(image_other3);
+        		viewer.scene.imageryLayers.remove(image_other4);
+        		viewer.scene.imageryLayers.remove(image_other5);
+        		viewer.scene.imageryLayers.remove(image_other6);
+        		viewer.scene.imageryLayers.remove(image_other7);
+        		viewer.scene.imageryLayers.remove(image_other8);
+                viewer.scene.imageryLayers.remove(image_other9);
+         tjtd_timer=setInterval(bxs_change,2000);
+        $("#light_dark").hide();
+        }
+        
+        
+        document.getElementById("tjtd_remove").onclick=function(){
+        $("#light_dark").hide();
+          cc=0;
+                viewer.scene.imageryLayers.remove(image_other1);
+        		viewer.scene.imageryLayers.remove(image_other2);
+        		viewer.scene.imageryLayers.remove(image_other3);
+        		viewer.scene.imageryLayers.remove(image_other4);
+        		viewer.scene.imageryLayers.remove(image_other5);
+        		viewer.scene.imageryLayers.remove(image_other6);
+        		viewer.scene.imageryLayers.remove(image_other7);
+        		viewer.scene.imageryLayers.remove(image_other8);
+                viewer.scene.imageryLayers.remove(image_other9);
+				clearInterval(tjsy_timer);
+				viewer.scene.imageryLayers.remove(image_other10);
+				viewer.scene.imageryLayers.remove(image_other11);
+				viewer.scene.imageryLayers.remove(image_other12);
+				viewer.scene.imageryLayers.remove(image_other13);
+				viewer.scene.imageryLayers.remove(image_other14);
+				viewer.scene.imageryLayers.remove(image_other15);
+				viewer.scene.imageryLayers.remove(image_other16);
+				viewer.scene.imageryLayers.remove(image_other17);
+         clearInterval(tjtd_timer);
+		 for(var i=0;i<tjtdImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjtdImgs[i]);
+				}
+				for(var i=0;i<tjsyImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjsyImgs[i]);
+				}
+        }
+        
+        var cc=0;
+        
+        function bxs_change(){
+             cc++;
+            if(cc==1){
+        	    image_other1=image_show("../../localOtherData/tj_change/1975/",1.0);
+                tjtdImgs.push(image_other1);
+                tj_slider.value=1975;
+                tj_text.value=1975;				
+        	}else if(cc==2){
+        	   viewer.scene.imageryLayers.remove(image_other1);
+                image_other2=image_show("../../localOtherData/tj_change/1980/",1.0);
+                tjtdImgs.push(image_other2);
+                tj_slider.value=1980;
+                tj_text.value=1980;				
+        	}else if(cc==3){
+        	    viewer.scene.imageryLayers.remove(image_other2);
+                 image_other3=image_show("../../localOtherData/tj_change/1985/",1.0);
+				 tjtdImgs.push(image_other3);
+                tj_slider.value=1985;
+                tj_text.value=1985;
+        	}else if(cc==4){
+        	    viewer.scene.imageryLayers.remove(image_other3);
+                 image_other4=image_show("../../localOtherData/tj_change/1990/",1.0);
+				 tjtdImgs.push(image_other4);
+                tj_slider.value=1990;
+                tj_text.value=1990;
+        	}else if(cc==5){
+        	    viewer.scene.imageryLayers.remove(image_other4);
+                 image_other5=image_show("../../localOtherData/tj_change/1995/",1.0);
+				 tjtdImgs.push(image_other5);
+                tj_slider.value=1995;
+                tj_text.value=1995;
+        	}else if(cc==6){
+        	    viewer.scene.imageryLayers.remove(image_other5);
+                 image_other6=image_show("../../localOtherData/tj_change/2000/",1.0);
+				 tjtdImgs.push(image_other6);
+                tj_slider.value=2000;
+                tj_text.value=2000;
+        	}else if(cc==7){
+        	    viewer.scene.imageryLayers.remove(image_other6);
+                 image_other7=image_show("../../localOtherData/tj_change/2005/",1.0);
+				 tjtdImgs.push(image_other7);
+                tj_slider.value=2005;
+                tj_text.value=2005;
+        	}else if(cc==8){
+        	    viewer.scene.imageryLayers.remove(image_other7);
+                 image_other8=image_show("../../localOtherData/tj_change/2010/",1.0);
+				 tjtdImgs.push(image_other8);
+                tj_slider.value=2010;
+                tj_text.value=2010;
+        	}else if(cc==9){
+        	    viewer.scene.imageryLayers.remove(image_other8);
+                 image_other9=image_show("../../localOtherData/tj_change/2015/",1.0);
+				 tjtdImgs.push(image_other9);
+                tj_slider.value=2015;
+                tj_text.value=2015;
+        	}
+        }
+
+}else if(index_flag==2){                                                 //天津市水域面积变化
+         
+	 var tj_slider=document.getElementById("tj_slider");
+     var tj_text=document.getElementById("tj_text");
+     tj_slider.addEventListener("mouseup",function(){
+        var slider_v=tj_slider.value;
+        tj_text.value=slider_v; 
+          switch(slider_v){ 
+            case "1970":
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     	     viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+             clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);			 
+     		 break;
+     	  case "1975":
+		     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+             clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);			 
+     		  break;
+     	  case "1980":    	     
+     		 viewer.scene.imageryLayers.remove(image_other11);
+			 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+			 clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+			 image_other10=image_show("../../localOtherData/tj_change/1980_1/",1.0);
+			 tjsyImgs.push(image_other10);
+     		 break;
+     	  case "1985":
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+			 clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     		 image_other11=image_show("../../localOtherData/tj_change/1985_1/",1.0);
+			 tjsyImgs.push(image_other11);
+     		 break;
+     	  case "1990": 
+     	    viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+			 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+			 clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     		 image_other12=image_show("../../localOtherData/tj_change/1990_1/",1.0);
+			 tjsyImgs.push(image_other12);
+     		 break;
+     	 case "1995":
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+			 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+			 clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     		 image_other13=image_show("../../localOtherData/tj_change/1995_1/",1.0);
+			 tjsyImgs.push(image_other13);
+     		 break;
+     	 case "2000":
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+			 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+             clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);     		 
+     		 image_other14=image_show("../../localOtherData/tj_change/2000_1/",1.0);
+			 tjsyImgs.push(image_other14);
+     		 break;
+     	 case "2005":
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+			 clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     		 image_other15=image_show("../../localOtherData/tj_change/2005_1/",1.0);
+			 tjsyImgs.push(image_other15);
+     		 break;
+     	 case "2010":
+     	 	 viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+			 clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     		 image_other16=image_show("../../localOtherData/tj_change/2010_1/",1.0);
+			 tjsyImgs.push(image_other16);
+     		 break;
+     	 case "2015":
+     		 viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+			 clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+              image_other17=image_show("../../localOtherData/tj_change/2015_1/",1.0);
+			  tjsyImgs.push(image_other17);
+     		 break;
+     	}
+     });
+     
+     tj_text.addEventListener("change",function(){
+        var text_v=tj_text.value;
+        tj_slider.value=tj_text.value;
+        switch(text_v){ 
+            case "1970":
+			clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     	     viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17); 
+     		 break;
+     	  case "1975":
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+		     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17); 
+     		  break;
+     	  case "1980":
+             clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);		  
+     		 viewer.scene.imageryLayers.remove(image_other11);
+			 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+			 image_other10=image_show("../../localOtherData/tj_change/1980_1/",1.0);
+			 tjsyImgs.push(image_other10);
+     		 break;
+     	  case "1985":
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+     		 image_other11=image_show("../../localOtherData/tj_change/1985_1/",1.0);
+			 tjsyImgs.push(image_other11);
+     		 break;
+     	  case "1990": 
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	    viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+			 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+     		 image_other12=image_show("../../localOtherData/tj_change/1990_1/",1.0);
+			 tjsyImgs.push(image_other12);
+     		 break;
+     	 case "1995":
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+			 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+     		 image_other13=image_show("../../localOtherData/tj_change/1995_1/",1.0);
+			 tjsyImgs.push(image_other13);
+     		 break;
+     	 case "2000":
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+			 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);     		 
+     		 image_other14=image_show("../../localOtherData/tj_change/2000_1/",1.0);
+			 tjsyImgs.push(image_other14);
+     		 break;
+     	 case "2005":
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+     		 image_other15=image_show("../../localOtherData/tj_change/2005_1/",1.0);
+			 tjsyImgs.push(image_other15);
+     		 break;
+     	 case "2010":
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	 	 viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+     		 image_other16=image_show("../../localOtherData/tj_change/2010_1/",1.0);
+			 tjsyImgs.push(image_other16);
+     		 break;
+     	 case "2015":
+		     clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     		 viewer.scene.imageryLayers.remove(image_other10);
+     		 viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+              image_other17=image_show("../../localOtherData/tj_change/2015_1/",1.0);
+			  tjsyImgs.push(image_other17);
+     		 break;
+     	}
+     });
+     
+     
+
+     document.getElementById("tjtd_play").onclick=function(){
+     viewer.camera.flyTo({
+         destination : Cesium.Cartesian3.fromDegrees(117.3462305,39.3512083,280000),
+     	duration:1
+         });
+		         clearInterval(tjtd_timer);
+				 for(var i=0;i<tjtdImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjtdImgs[i]);
+				}
+				for(var i=0;i<tjsyImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjsyImgs[i]);
+				}
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+     	     viewer.scene.imageryLayers.remove(image_other10);
+     	     viewer.scene.imageryLayers.remove(image_other11);
+     		 viewer.scene.imageryLayers.remove(image_other12);
+     		 viewer.scene.imageryLayers.remove(image_other13);
+     		 viewer.scene.imageryLayers.remove(image_other14);
+     		 viewer.scene.imageryLayers.remove(image_other15);
+     		 viewer.scene.imageryLayers.remove(image_other16);
+     		 viewer.scene.imageryLayers.remove(image_other17);
+      tjsy_timer=setInterval(bxs_change2,2000);
+     $("#light_dark").hide();
+     }
+     
+     
+     document.getElementById("tjtd_remove").onclick=function(){
+     $("#light_dark").hide();
+       dd=0;
+	         clearInterval(tjtd_timer);
+		     viewer.scene.imageryLayers.remove(image_other1);
+		     viewer.scene.imageryLayers.remove(image_other2);
+		     viewer.scene.imageryLayers.remove(image_other3);
+		     viewer.scene.imageryLayers.remove(image_other4);
+		     viewer.scene.imageryLayers.remove(image_other5);
+		     viewer.scene.imageryLayers.remove(image_other6);
+		     viewer.scene.imageryLayers.remove(image_other7);
+		     viewer.scene.imageryLayers.remove(image_other8);
+		     viewer.scene.imageryLayers.remove(image_other9);
+             viewer.scene.imageryLayers.remove(image_other10);
+     		viewer.scene.imageryLayers.remove(image_other11);
+     		viewer.scene.imageryLayers.remove(image_other12);
+     		viewer.scene.imageryLayers.remove(image_other13);
+     		viewer.scene.imageryLayers.remove(image_other14);
+     		viewer.scene.imageryLayers.remove(image_other15);
+     		viewer.scene.imageryLayers.remove(image_other16);
+     		viewer.scene.imageryLayers.remove(image_other17);
+      clearInterval(tjsy_timer);
+	            for(var i=0;i<tjtdImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjtdImgs[i]);
+				}
+				for(var i=0;i<tjsyImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjsyImgs[i]);
+				}
+				
+     }
+     
+     var dd=0;
+     
+     function bxs_change2(){
+          dd++;
+         if(dd==1){
+     	    image_other10=image_show("../../localOtherData/tj_change/1980_1/",1.0); 
+            tjsyImgs.push(image_other10);
+            tj_slider.value=1980;
+            tj_text.value=1980;			
+     	}else if(dd==2){
+     	   viewer.scene.imageryLayers.remove(image_other10);
+             image_other11=image_show("../../localOtherData/tj_change/1985_1/",1.0);
+             tjsyImgs.push(image_other11);
+            tj_slider.value=1985;
+            tj_text.value=1985;			 
+     	}else if(dd==3){
+     	    viewer.scene.imageryLayers.remove(image_other11);
+              image_other12=image_show("../../localOtherData/tj_change/1990_1/",1.0);
+			  tjsyImgs.push(image_other12);
+            tj_slider.value=1990;
+            tj_text.value=1990;
+     	}else if(dd==4){
+     	    viewer.scene.imageryLayers.remove(image_other12);
+              image_other13=image_show("../../localOtherData/tj_change/1995_1/",1.0);
+			  tjsyImgs.push(image_other13);
+            tj_slider.value=1995;
+            tj_text.value=1995;
+     	}else if(dd==5){
+     	    viewer.scene.imageryLayers.remove(image_other13);
+              image_other14=image_show("../../localOtherData/tj_change/2000_1/",1.0);
+			  tjsyImgs.push(image_other14);
+            tj_slider.value=2000;
+            tj_text.value=2000;
+     	}else if(dd==6){
+     	    viewer.scene.imageryLayers.remove(image_other14);
+              image_other15=image_show("../../localOtherData/tj_change/2005_1/",1.0);
+			  tjsyImgs.push(image_other15);
+            tj_slider.value=2005;
+            tj_text.value=2005;
+     	}else if(dd==7){
+     	    viewer.scene.imageryLayers.remove(image_other15);
+              image_other16=image_show("../../localOtherData/tj_change/2010_1/",1.0);
+			  tjsyImgs.push(image_other16);
+            tj_slider.value=2010;
+            tj_text.value=2010;
+     	}else if(dd==8){
+     	    viewer.scene.imageryLayers.remove(image_other16);
+              image_other17=image_show("../../localOtherData/tj_change/2015_1/",1.0);
+			  tjsyImgs.push(image_other16);
+            tj_slider.value=2015;
+            tj_text.value=2015;
+     	}
+     }
+     }
+});
+
+$('#tjChangeWindow').window({
+			 onClose:function(){
+				 for(var i=0;i<tjtdImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjtdImgs[i]);
+				}
+				for(var i=0;i<tjsyImgs.length;i++){
+					viewer.scene.imageryLayers.remove(tjsyImgs[i]);
+				}
+			 }
+		 });

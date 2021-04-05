@@ -1,0 +1,8 @@
+"Error
+    at new DeveloperError (http://192.168.10.144:81/GITR2/Apps/scripts/CesiumUnminified/Cesium.js:540:19)
+    at scaleToGeodeticSurface (http://192.168.10.144:81/GITR2/Apps/scripts/CesiumUnminified/Cesium.js:5461:19)
+    at Function.Cartographic.fromCartesian (http://192.168.10.144:81/GITR2/Apps/scripts/CesiumUnminified/Cesium.js:5682:17)
+    at http://192.168.10.144:81/GITR2/Apps/scripts/jingwei_show.js:14:41
+    at handleMouseMove (http://192.168.10.144:81/GITR2/Apps/scripts/CesiumUnminified/Cesium.js:77940:13)
+    at handlePointerMove (http://192.168.10.144:81/GITR2/Apps/scripts/CesiumUnminified/Cesium.js:78332:13)
+    at HTMLCanvasElement.listener (http://192.168.10.144:81/GITR2/Apps/scripts/CesiumUnminified/Cesium.js:77755:13)"
